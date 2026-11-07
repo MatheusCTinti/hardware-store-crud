@@ -1,0 +1,162 @@
+/* ===== PAINEL CSS DO JSFIDDLE ===== */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --fundo: #e8edec;
+  --painel: #ffffff;
+  --placa: #0f5c4a;       /* verde de placa de circuito */
+  --placa-escura: #0a4034;
+  --cobre: #c77d3a;       /* trilhas de cobre */
+  --texto: #1c2a29;
+  --suave: #5d6e6c;
+  --borda: #cfd9d7;
+  --perigo: #b3372e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: 'IBM Plex Sans', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Cabeçalho: o único elemento "ousado", com trilhas de circuito */
+.topo {
+  background-color: var(--placa);
+  background-image:
+    linear-gradient(90deg, var(--cobre) 0 3px, transparent 3px),
+    repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,255,255,.07) 38px 40px),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(255,255,255,.07) 38px 40px);
+  color: #fff;
+  padding: 24px 28px;
+  border-radius: 10px;
+}
+.topo h1 {
+  margin: 0;
+  font-family: 'Chakra Petch', Arial, sans-serif;
+  font-size: 2rem;
+  letter-spacing: .5px;
+}
+.topo p { margin: 4px 0 0; opacity: .85; }
+.topo code { background: rgba(0,0,0,.25); padding: 1px 6px; border-radius: 4px; }
+
+.resumo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 16px 2px;
+  color: var(--suave);
+}
+.resumo strong {
+  font-family: 'Chakra Petch', Arial, sans-serif;
+  font-size: 1.3rem;
+  color: var(--placa);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.painel {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 20px;
+}
+.painel h2 {
+  margin: 0 0 12px;
+  font-family: 'Chakra Petch', Arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+label { display: block; margin: 12px 0 4px; font-size: .9rem; font-weight: 500; }
+
+input, select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+  color: var(--texto);
+}
+input:focus, select:focus, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--cobre);
+  outline-offset: 1px;
+}
+
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.principal { background: var(--placa); color: #fff; }
+.btn.principal:hover { background: var(--placa-escura); }
+.btn.secundario { background: transparent; border: 1px solid var(--borda); color: var(--suave); margin-top: 8px; }
+.btn[hidden] { display: none; }
+
+#mensagem { min-height: 1.4em; margin: 12px 0 0; font-size: .9rem; font-weight: 500; color: var(--placa); }
+#mensagem.erro { color: var(--perigo); }
+
+.filtros { display: grid; grid-template-columns: 1fr 200px; gap: 10px; margin-bottom: 14px; }
+
+.tabela-rolagem { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th {
+  text-align: left;
+  font-size: .85rem;
+  color: var(--suave);
+  font-weight: 600;
+  border-bottom: 2px solid var(--placa);
+  padding: 8px;
+}
+td { padding: 10px 8px; border-bottom: 1px solid var(--borda); vertical-align: middle; }
+td small { display: block; color: var(--suave); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.baixo { color: var(--perigo); font-weight: 600; }
+.vazio { text-align: center; color: var(--suave); padding: 28px 8px; }
+
+.acao {
+  border: 1px solid var(--borda);
+  background: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+  margin-right: 4px;
+}
+.acao:hover { border-color: var(--placa); color: var(--placa); }
+.acao.excluir:hover { border-color: var(--perigo); color: var(--perigo); }
+
+details { margin-top: 18px; }
+summary { cursor: pointer; font-weight: 600; color: var(--placa); }
+pre {
+  background: #14201f;
+  color: #cfe8e1;
+  padding: 14px;
+  border-radius: 8px;
+  max-height: 260px;
+  overflow: auto;
+  font-size: .8rem;
+}
+
+@media (max-width: 820px) {
+  .grade { grid-template-columns: 1fr; }
+  .filtros { grid-template-columns: 1fr; }
+}

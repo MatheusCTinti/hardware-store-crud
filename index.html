@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Store</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header class="topo">
+  <h1>Hardware Store</h1>
+  <p>Controle de estoque · banco de dados não relacional (coleção <code>produtos</code>)</p>
+</header>
+<section class="resumo">
+  <div><strong id="totalItens">0</strong> produtos</div>
+  <div><strong id="totalUnidades">0</strong> unidades em estoque</div>
+  <div><strong id="totalValor">R$ 0,00</strong> em estoque</div>
+</section>
+
+<main class="grade">
+  <section class="painel">
+    <h2 id="tituloForm">Novo produto</h2>
+    <form id="formProduto" autocomplete="off">
+      <input type="hidden" id="idEdicao">
+
+      <label for="nome">Nome do produto</label>
+      <input type="text" id="nome" placeholder="Ex.: RTX 4060 8GB" required>
+
+      <label for="categoria">Categoria</label>
+      <select id="categoria" required>
+        <option value="">Selecione...</option>
+        <option>Placa de vídeo</option>
+        <option>Processador</option>
+        <option>Memória RAM</option>
+        <option>Placa-mãe</option>
+        <option>SSD / HD</option>
+        <option>Fonte</option>
+        <option>Gabinete</option>
+        <option>Carcaça</option>
+      </select>
+
+      <label for="marca">Marca</label>
+      <input type="text" id="marca" placeholder="Ex.: Gigabyte" required>
+
+      <div class="duas">
+        <div>
+          <label for="preco">Preço (R$)</label>
+          <input type="number" id="preco" min="0" step="0.01" required>
+        </div>
+        <div>
+          <label for="estoque">Estoque</label>
+          <input type="number" id="estoque" min="0" step="1" required>
+        </div>
+      </div>
+
+      <button type="submit" id="btnSalvar" class="btn principal">Cadastrar produto</button>
+      <button type="button" id="btnCancelar" class="btn secundario" hidden>Cancelar edição</button>
+    </form>
+    <p id="mensagem" role="status"></p>
+  </section>
+
+  <section class="painel">
+    <div class="filtros">
+      <input type="search" id="busca" placeholder="Buscar por nome ou marca">
+      <select id="filtroCategoria">
+        <option value="">Todas as categorias</option>
+        <option>Placa de vídeo</option>
+        <option>Processador</option>
+        <option>Memória RAM</option>
+        <option>Placa-mãe</option>
+        <option>SSD / HD</option>
+        <option>Fonte</option>
+        <option>Gabinete</option>
+        <option>Carcaça</option>
+      </select>
+    </div>
+
+    <div class="tabela-rolagem">
+      <table>
+        <thead>
+          <tr>
+            <th>Produto</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="listaProdutos"></tbody>
+      </table>
+    </div>
+
+    <details>
+      <summary>Ver documentos da coleção (JSON)</summary>
+      <pre id="jsonColecao"></pre>
+    </details>
+  </section>
+</main>
+
+</body>
+</html>
